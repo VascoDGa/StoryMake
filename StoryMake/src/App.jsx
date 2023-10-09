@@ -12,15 +12,7 @@ export function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-            <Route index element={<Home />} >
-            <Route path="about" element={<About />} />
-            <Route path = "popularstories" element = {<PopularStories/>} />
-            <Route path = "*" element = {<ErrorPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      
      
    </>
   );

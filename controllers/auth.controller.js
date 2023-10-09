@@ -80,3 +80,15 @@ export const logOut = asyncHandler(async (req, res) => {
         message : "Logged out successfully"
     })
 })
+
+export const getProfile = asyncHandler ( async ( req, res) => {
+    const {user} = req;
+    if(!user) {
+        throw new customErrors("User not authorized", 400);
+    }
+
+    res.status(200).json({
+        success: true,
+        user
+    })
+})

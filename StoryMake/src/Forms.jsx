@@ -4,6 +4,8 @@ import React from 'react'
 
 const Forms = ({ handleSubmit , prompt , setPrompt, response, isFetched , error }) => {
 
+
+
     return (
         <>
             <form onSubmit = {handleSubmit} className="flex flex-col space-y-5 items-center pt-[100px]">

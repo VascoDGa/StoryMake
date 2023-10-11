@@ -10,8 +10,8 @@ const Navbar = () => {
         <li><NavLink to = "/" className={({ isActive }) => `px-5 py-5 ${isActive ? "bg-green-800" : "hover:bg-green-800"} cursor-pointer pt-[10px]`}>Home</NavLink>   </li>
         <li><NavLink to="/about" className={({ isActive }) => `px-5 py-5 ${isActive ? "bg-green-800" : "hover:bg-green-800"} cursor-pointer`}>About</NavLink></li>
         <li><NavLink to = "/popularstories" className={({ isActive }) => `px-5 py-5 ${isActive ? "bg-green-800" : "hover:bg-green-800"} cursor-pointer`}>Popular Stories</NavLink></li>
+        <li><NavLink to = "/login" className = {({isActive}) => `px-5 py-5 ${isActive ? "bg-green-800" : "bg-teal-700"} cursor-pointer`}>Login/SignUp</NavLink></li>
        </ol>
-        
     </nav>
     
   )

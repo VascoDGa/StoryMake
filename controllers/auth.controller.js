@@ -1,6 +1,6 @@
-import asyncHandler from '../service/asyncHandler'
-import User from '../models/user.js'
-import '../utils/customErrors'
+import asyncHandler from '../service/asyncHandler.js'
+import User from './../models/user.js'
+import '../utils/customErrors.js'
 
 export const cookieOptions = {
     expires : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),

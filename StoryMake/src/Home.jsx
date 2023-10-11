@@ -21,6 +21,8 @@ const Home = () => {
         .catch((err) => {
           setError(err);
         })
+
+        
     }
 
     return (

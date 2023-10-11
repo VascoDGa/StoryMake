@@ -1,6 +1,6 @@
-import asyncHandler from "../service/asyncHandler";
-import Story from './models/story.js';
-import '../utils/customErrors';
+import asyncHandler from "../service/asyncHandler.js";
+import Story from '../models/story.js';
+import '../utils/customErrors.js';
 
 export const createStory = asyncHandler(async(req, res) => {
     const {story , name} = req.body;

@@ -1,6 +1,5 @@
 import asyncHandler from "../service/asyncHandler.js";
 import Story from '../models/story.js';
-import '../utils/customErrors.js';
 
 export const createStory = asyncHandler(async(req, res) => {
     const {story , name} = req.body;
@@ -34,7 +33,7 @@ export const updateStoryCount = asyncHandler( async (req , res ) => {
     })
 
     if(!updateStory) {
-        throw new customErrors("Story not found" , 400)
+        throw new Error("Story not found" )
     }
 
     res.status(200).json({
@@ -48,7 +47,7 @@ export const getAllStories = asyncHandler( async (req, res) => {
     const allStories = await Story.find()
 
     if(!allStories) {
-        throw new customErrors("No stories found", 400);
+        throw new Error("No stories found");
     }
 
     res.status(200).json({

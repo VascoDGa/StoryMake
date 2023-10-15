@@ -4,9 +4,9 @@ import { isLoggedIn } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get("/getStories", isLoggedIn, getAllStories);
-router.post("/updatestory", isLoggedIn, updateStoryCount);
-router.post("/createstory",isLoggedIn,  createStory);
+router.get("/getStories", getAllStories);
+router.post("/updatestory", updateStoryCount);
+router.post("/createstory", createStory);
 
 
 

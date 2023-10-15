@@ -1,6 +1,5 @@
 import asyncHandler from '../service/asyncHandler.js'
 import User from './../models/user.js'
-import '../utils/customErrors.js'
 
 export const cookieOptions = {
     expires : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
@@ -11,13 +10,13 @@ export const signUp = asyncHandler(async (req, res) => {
     const { name , email , password } = req.body;
 
     if(!name || !email || !password) {
-        throw new customErrors("Please enter a valid Username and password", 400)
+        throw new Error("Please enter a valid Username and password")
     }
 
     const existingUser = await User.findOne({email});
 
     if(existingUser) {
-        throw new customErrors("Username already exists", 400)
+        throw new Error("Username already exists")
     }
 
     const user =await User.create({
@@ -44,29 +43,29 @@ export const logIn = asyncHandler(async (req, res) => {
     const {email, password} = req.body;
 
     if(!email || !password) {
-        throw new customErrors("Please enter valid username and password", 400)
+        throw new Error("Please enter valid username and password")
     }
 
-    const user = User.findOne({email}).select("+password")
+    const user = await User.findOne({email}).select("+password")
 
     if(!user) {
-        throw new customErrors("Username and password do not match", 400);
+        throw new Error("Username and password do not match");
     }
 
-    const passwordMatch = await user.comparePassword(password)
+    const passwordMatch = await user.comparePasswords(password)
 
     if(passwordMatch){
         const token = user.getJWTtoken();
         user.password = undefined;
         res.cookie ( "token" , token , cookieOptions)
-        res.status(200).json({
+        return res.status(200).json({
             success : true,
             token,
             user
         })
     }
-
-    throw new customErrors("Password does not match", 400)
+    else
+        throw new Error("Password does not match")
 })
 
 export const logOut = asyncHandler(async (req, res) => {
@@ -84,7 +83,7 @@ export const logOut = asyncHandler(async (req, res) => {
 export const getProfile = asyncHandler ( async ( req, res) => {
     const {user} = req;
     if(!user) {
-        throw new customErrors("User not authorized", 400);
+        throw new Error("User not authorized");
     }
 
     res.status(200).json({

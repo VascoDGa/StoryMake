@@ -22,11 +22,20 @@ const Home = () => {
           setError(err);
         })
 
-        
+    }
+
+    const sendStory = async () => {
+      const credentials = {
+        story: `${response}`
+      }
+      const pushStory = await axios.post("http://localhost:5000/api/v1/story/createstory", credentials)
+        .catch((err) => console.log(err))
+
+      console.log(pushStory.data);
     }
 
     return (
-        <Forms handleSubmit = {(e) => handleSubmit(e)} prompt = {prompt} setPrompt = {setPrompt} response = {response} isFetched = {isFetched}  error = {error}  />
+        <Forms handleSubmit = {(e) => handleSubmit(e)} prompt = {prompt} setPrompt = {setPrompt} response = {response} isFetched = {isFetched}  error = {error}  sendStory = {() => sendStory}/>
     )
 }
 

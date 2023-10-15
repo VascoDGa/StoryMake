@@ -1,7 +1,6 @@
 import User from '../models/user.js';
 import JWT from 'jsonwebtoken';
 import asyncHandler from '../service/asyncHandler.js';
-import '../utils/customErrors.js';
 import config from '../config/index.js';
 
 export const isLoggedIn = asyncHandler(async (req, res, next) => {
@@ -12,7 +11,7 @@ export const isLoggedIn = asyncHandler(async (req, res, next) => {
     }
 
     if(!token) {
-        throw new customErrors("Not authorized", 400);
+        throw new Error("Not authorized");
     }
 
     try {
@@ -22,7 +21,7 @@ export const isLoggedIn = asyncHandler(async (req, res, next) => {
 
         next();
     } catch (error) {
-        throw new customErrors("Not authorized", 400);
+        throw new Error("Not authorized");
     }
 
     next();
